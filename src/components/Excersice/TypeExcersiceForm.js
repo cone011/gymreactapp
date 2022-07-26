@@ -3,6 +3,7 @@ import classes from "./TypeExcersiceForm.module.css";
 import Card from "../UI/Card";
 import Message from "../UI/Message";
 import Backdrop from "../UI/Backdrop";
+import Modal from "react-bootstrap/Modal";
 
 const TypeExcersiceForm = (props) => {
   const codeInputRef = useRef();
@@ -41,27 +42,31 @@ const TypeExcersiceForm = (props) => {
   };
 
   return (
-    <div>
-      <Card className={classes.input}>
-        <div className={classes.contactContainer}>
-          <h2>{props.isNew ? "Nuevo tipo de ejercicio" : props.name}</h2>
-          <form onSubmit={submitHandler}>
-            <input type="text" placeholder="codigo" ref={codeInputRef} />
-            <input type="text" placeholder="Nombre" ref={nameInputRef} />
-            <button type="submit">Guardar</button>
-          </form>
+    <Modal show={true}>
+      <Modal.Body>
+        <div>
+          <Card className={classes.input}>
+            <div className={classes.contactContainer}>
+              <h2>{props.isNew ? "Nuevo tipo de ejercicio" : props.name}</h2>
+              <form onSubmit={submitHandler}>
+                <input type="text" placeholder="codigo" ref={codeInputRef} />
+                <input type="text" placeholder="Nombre" ref={nameInputRef} />
+                <button type="submit">Guardar</button>
+              </form>
+            </div>
+          </Card>
+          {isShowing ? (
+            <Message
+              show={isShowing}
+              closed={modalHandler}
+              isError={isError}
+              message={message}
+            />
+          ) : null}
+          {isShowing ? <Backdrop show /> : null}
         </div>
-      </Card>
-      {isShowing ? (
-        <Message
-          show={isShowing}
-          closed={modalHandler}
-          isError={isError}
-          message={message}
-        />
-      ) : null}
-      {isShowing ? <Backdrop show /> : null}
-    </div>
+      </Modal.Body>
+    </Modal>
   );
 };
 

@@ -1,5 +1,4 @@
 import { Table } from "react-bootstrap";
-import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import classes from "./ListTypeExcersice.module.css";
 import ListTypeExcersiceItem from "./ListTypeExcersiceItem";
 

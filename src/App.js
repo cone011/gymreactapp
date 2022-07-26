@@ -1,10 +1,9 @@
 /*import logo from './logo.svg';*/
+import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import SectionInitial from "./components/Home/SectionInitial";
 import Layout from "./components/Layout/Layout";
-import ExcersiceScreen from "./Pages/ExersiceScreen";
-import TypeExerciseScreen from "./Pages/TypeExerciseScreen";
-
+import TypeExercise from "./Pages/TypeExercise";
 function App() {
   return (
     /*<div className="App">
@@ -24,7 +23,17 @@ function App() {
       </header>
     </div>*/
     <Layout>
-      <ExcersiceScreen />
+      <Switch>
+        <Route path="/" exact>
+          <Redirect to="/home" />
+        </Route>
+        <Route path="/home" exact>
+          <SectionInitial />
+        </Route>
+        <Route path="/new-type" exact>
+          <TypeExercise />
+        </Route>
+      </Switch>
     </Layout>
   );
 }
